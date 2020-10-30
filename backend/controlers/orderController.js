@@ -138,6 +138,23 @@ const updateOrderToDelivered = asyncHandler(async(req, res)=>{
     }
 })
 
+// description delete a product
+// route delete/api/orders/id
+// access private/admin
+const deleteOrder= asyncHandler(async(req, res)=>{
 
-export {addOrderItems, getOrderById,
+    const order = await Order.findById(req.params.id)
+
+    if(order){
+       await order.remove()
+       res.json({message: 'order removed'})
+    }else{
+    res.status(404)
+    throw new Error('order not found')
+}
+})
+
+ 
+
+export {addOrderItems, getOrderById, deleteOrder, 
     updateOrderToPayOnDelivery, getOrders, getMyOrders, updateOrderToDelivered}

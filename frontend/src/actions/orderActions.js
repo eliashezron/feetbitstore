@@ -19,7 +19,10 @@ import{ORDER_CREATE_FAIL,
     ORDER_DELIVERED_FAIL,
     ORDER_PAY_ON_DELIVERY_FAIL,
     ORDER_PAY_ON_DELIVERY_SUCCESS,
-    ORDER_PAY_ON_DELIVERY_REQUEST} from '../constants/orderConstants'
+    ORDER_PAY_ON_DELIVERY_REQUEST,
+    ORDER_DELETE_REQUEST,
+    ORDER_DELETE_SUCCESS,
+    ORDER_DELETE_FAIL} from '../constants/orderConstants'
     import {CART_CLEAR_ITEMS} from '../constants/cartConstants'
     import { logout } from './userActions'
 
@@ -308,3 +311,35 @@ export const getOrderDetails= (id) => async(dispatch, getState)=>{
                   })
                 }
               }
+              export const deleteOrder = (id) => async(dispatch, getState)=>{
+                try{
+            
+                    dispatch({
+                        type: ORDER_DELETE_REQUEST,
+                    })
+            
+                    const {userLogin:{userInfo}, } = getState()
+            
+                    const config = {
+                        headers:{
+                            Authorization: `Bearer ${userInfo.token}`
+                        }
+                    }
+            
+                     await axios.delete(`/api/orders/${id}`,
+                     config)
+            
+                    dispatch({
+                        type:ORDER_DELETE_SUCCESS,
+                       
+                    })
+            
+            
+                }catch(error){
+                dispatch({
+                type: ORDER_DELETE_FAIL,
+                payload: error.response && error.response.data.message ? 
+                error.response.data.message : error.message
+                })
+                }
+                }

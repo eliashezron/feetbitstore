@@ -4,7 +4,7 @@ import {Table,Button} from 'react-bootstrap'
 import{LinkContainer} from 'react-router-bootstrap'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import {listAllOrders} from '../actions/orderActions'
+import {listAllOrders, deleteOrder} from '../actions/orderActions'
 
 const OrderListScreen = ({history}) => {
     const dispatch = useDispatch()
@@ -15,6 +15,8 @@ const OrderListScreen = ({history}) => {
     const userLogin = useSelector(state => state.userLogin)
     const {userInfo}= userLogin
 
+    const orderDelete = useSelector(state => state.orderDelete)
+    const {loading:loadingDelete, error:errorDelete, success:successDelete}= orderDelete
 
     useEffect(()=>{
         if(userInfo && userInfo.isAdmin){
@@ -24,13 +26,22 @@ const OrderListScreen = ({history}) => {
         }
         
   
-    }, [dispatch, history, userInfo])
+    }, [dispatch, history, userInfo, successDelete])
+
+    const deleteHandler=(id)=>{
+      if(window.confirm('Are you Sure')){
+          dispatch(deleteOrder(id))
+      }
+      }
+
+
 
     
     return (
         <>
            <h1>Orders</h1> 
-           
+           {loadingDelete && <Loader/>}
+            {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
            {loading ? <Loader/> : error ? <Message variant = 'danger'>{error}</Message>
            :(
                <Table striped bordered hover responsive className='table-sm'>
@@ -51,10 +62,10 @@ const OrderListScreen = ({history}) => {
                 <td>{order._id}</td>
                 <td>{order.user && order.user.name}</td>
                 <td>{order.createdAt.substring(0, 10)}</td>
-                <td>${order.totalPrice}</td>
+                <td>UGX{order.totalPrice}</td>
                 <td>
-                  {order.isPaid ? (
-                    order.paidAt.substring(0, 10)
+                  {order.payOrderOnDelivery ? (
+                    order.placedAt.substring(0, 10)
                   ) : (
                     <i className='fas fa-times' style={{ color: 'red' }}></i>
                   )}
@@ -72,6 +83,10 @@ const OrderListScreen = ({history}) => {
                       Details
                     </Button>
                   </LinkContainer>
+                  <Button variant ='danger' className='btn-sm' onClick={()=>
+                  deleteHandler(order._id)}>
+                      <i className='fas fa-trash'></i>
+                  </Button>
                 </td>
               </tr>
             ))}

@@ -24,7 +24,10 @@ import {ORDER_CREATE_SUCCESS,
      ORDER_PAY_ON_DELIVERY_RESET,
      ORDER_PAY_ON_DELIVERY_FAIL,
      ORDER_PAY_ON_DELIVERY_SUCCESS,
-     ORDER_PAY_ON_DELIVERY_REQUEST} from '../constants/orderConstants'
+     ORDER_PAY_ON_DELIVERY_REQUEST,
+     ORDER_DELETE_REQUEST,
+     ORDER_DELETE_SUCCESS,
+     ORDER_DELETE_FAIL} from '../constants/orderConstants'
 
      export const orderCreateReducer = (state ={}, action) =>{
         switch(action.type){
@@ -207,3 +210,16 @@ import {ORDER_CREATE_SUCCESS,
                return state
        }
     }
+
+    export const orderDeleteReducer = (state ={}, action) => {
+        switch(action.type){ 
+            case ORDER_DELETE_REQUEST:
+                return{ loading: true}
+            case ORDER_DELETE_SUCCESS:
+                return{ loading: false, success:true}
+            case ORDER_DELETE_FAIL:
+                return{ loading: false, error:action.payload}
+            default:
+                return state
+        }
+    } 
