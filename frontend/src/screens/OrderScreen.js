@@ -123,7 +123,7 @@ const { loading:loadingPayOnDelivery, success:successPayOnDelivery,  } = orderPa
                             {order.paymentMethod}</p>
                             {/* {order.isPaid ? (<Message variant='success'>paid on {order.paidAt}</Message>):
                             (<Message variant='danger'>Not paid</Message>)} */}
-                            {order.payOrderOnDelivery ? (
+                            {order.payOnDelivery ? (
                 <Message variant='success'>To Be Paid on Delivery {order.placed}</Message>
               ) : (
                 <Message variant='danger'>Order Not yet Placed</Message>
@@ -198,7 +198,7 @@ const { loading:loadingPayOnDelivery, success:successPayOnDelivery,  } = orderPa
                                     )}
                                 </ListGroup.Item>
                             )} */}
-                            {!order.payOrderOnDelivery && (
+                            {!order.payOnDelivery && (
                                 <ListGroup.Item>
                                 {loadingPayOnDelivery ? <loader/> :
                                 ( <Button type='Button' className='btn-block'
@@ -210,7 +210,7 @@ const { loading:loadingPayOnDelivery, success:successPayOnDelivery,  } = orderPa
                                 </ListGroup.Item>
                             )}
                             {loadingDelivered && <Loader/>}
-                           {userInfo && userInfo.isAdmin && order.payOrderOnDelivery && !order.isDelivered && (
+                           {userInfo && userInfo.isAdmin && order.payOnDelivery && !order.isDelivered && (
                                <ListGroup.Item>
                                    <Button type='button' className='btn btn-block'
                                    onClick={deliverHandler}>

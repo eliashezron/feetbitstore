@@ -123,7 +123,7 @@ const getOrders = asyncHandler(async(req, res)=>{
 // route post/api/orders/:id/deliver
 // access private admin
 const updateOrderToDelivered = asyncHandler(async(req, res)=>{
-    const order = await Order.findById(req.params.id)
+    const order = await (await Order.findById(req.params.id))
 
     if(order){
         order.isDelivered = true
