@@ -17,6 +17,7 @@ import{ORDER_CREATE_FAIL,
     ORDER_DELIVERED_REQUEST,
     ORDER_DELIVERED_SUCCESS,
     ORDER_DELIVERED_FAIL} from '../constants/orderConstants'
+    import {CART_CLEAR_ITEMS} from '../constants/cartConstants'
     import { logout } from './userActions'
 
 
@@ -43,6 +44,11 @@ import{ORDER_CREATE_FAIL,
                 type:ORDER_CREATE_SUCCESS,
                 payload: data
             })
+            dispatch({
+              type: CART_CLEAR_ITEMS,
+              payload: data,
+            })
+            localStorage.removeItem('cartItems')
    
 
 }catch(error){

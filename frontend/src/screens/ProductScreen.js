@@ -6,7 +6,10 @@ import Rating from '../components/Rating'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import Meta from '../components/Meta'
-import {listProductDetails,createProductReview} from '../actions/productActions'
+import {
+    listProductDetails,
+    createProductReview
+                    } from '../actions/productActions'
 import {PRODUCT_CREATE_REVIEW_RESET} from '../constants/productConstants'
 
 
@@ -33,10 +36,13 @@ const ProductScreen = ({history, match}) => {
             alert('review Submitted')
             setRating(0)
             // setComment('')
-            dispatch({type:PRODUCT_CREATE_REVIEW_RESET })
+           
         }
-       dispatch(listProductDetails(match.params.id))
-    }, [dispatch, match, successProductReview])
+        if (!product._id || product._id !== match.params.id) {
+            dispatch(listProductDetails(match.params.id))
+            dispatch({ type: PRODUCT_CREATE_REVIEW_RESET })
+          }
+    }, [dispatch, match, product._id, successProductReview])
 
     const addToCartHandler = () =>{
         history.push(`/cart/${match.params.id}?qty=${qty}`)
@@ -161,7 +167,7 @@ const ProductScreen = ({history, match}) => {
                                 <Form.Group controlId='rating'>
                                     <Form.Label>Rating</Form.Label>
                                     <Form.Control as='select' value={rating} onChange={(e)=>
-                                    setRating(e.target.vlue)}>
+                                    setRating(e.target.value)}>
                                         <option value=''>select ...</option>
                                         <option value='1'>1 - poor</option>
                                         <option value='2'>2 - fair</option>
