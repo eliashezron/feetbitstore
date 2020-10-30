@@ -33,7 +33,7 @@ const PaymentScreen = ({history}) => {
                 <Form.Label as='legend'>Select Method</Form.Label>
             
             <Col>
-            <Form.Check 
+            {/* <Form.Check 
                 type='radio' 
                 label='payPal'
                  id='PaymentMethod'
@@ -42,7 +42,7 @@ const PaymentScreen = ({history}) => {
             
                  onChange={(e)=>{
                     setPaymentMethod(e.target.value)}}>
-                </Form.Check>
+                </Form.Check> */}
                 <Form.Check 
                 type='radio' 
                 label='Pay On Delivery'

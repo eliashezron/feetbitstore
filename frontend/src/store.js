@@ -13,7 +13,9 @@ import {userRegisterReducer,
           } from './reducers/userReducers'
 import {orderCreateReducer, orderListAllReducer,
       orderDetailsReducer,
-     orderPayReducer,orderDeliveredReducer, orderListMyReducer} from './reducers/orderReducers'
+     // orderPayReducer,
+     orderPayOnDeliveryReducer,
+     orderDeliveredReducer, orderListMyReducer} from './reducers/orderReducers'
 const reducer = combineReducers({
      productList: productListReducer,
      productDetails: productDetailsReducer,
@@ -26,7 +28,8 @@ const reducer = combineReducers({
      userList: userListReducer,
      orderCreate: orderCreateReducer,
      orderDetails:orderDetailsReducer,
-     orderPay:orderPayReducer,
+     // orderPay:orderPayReducer,
+     orderPayOnDelivery:orderPayOnDeliveryReducer,
      orderListMy:orderListMyReducer,
      orderListAll:orderListAllReducer,
      userDelete:userDeleteReducer,

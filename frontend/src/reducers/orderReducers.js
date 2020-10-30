@@ -4,10 +4,10 @@ import {ORDER_CREATE_SUCCESS,
      ORDER_DETAILS_REQUEST,
      ORDER_DETAILS_SUCCESS,
      ORDER_DETAILS_FAIL,
-     ORDER_PAY_RESET,
-     ORDER_PAY_FAIL,
-     ORDER_PAY_SUCCESS,
-     ORDER_PAY_REQUEST,
+    //  ORDER_PAY_RESET,
+    //  ORDER_PAY_FAIL,
+    //  ORDER_PAY_SUCCESS,
+    //  ORDER_PAY_REQUEST,
      ORDER_LIST_MY_REQUEST,
      ORDER_LIST_MY_SUCCESS,
      ORDER_LIST_MY_FAIL,
@@ -20,7 +20,11 @@ import {ORDER_CREATE_SUCCESS,
      ORDER_DELIVERED_FAIL,
      ORDER_DELIVERED_RESET,
      ORDER_DETAILS_RESET,
-     ORDER_CREATE_RESET} from '../constants/orderConstants'
+     ORDER_CREATE_RESET,
+     ORDER_PAY_ON_DELIVERY_RESET,
+     ORDER_PAY_ON_DELIVERY_FAIL,
+     ORDER_PAY_ON_DELIVERY_SUCCESS,
+     ORDER_PAY_ON_DELIVERY_REQUEST} from '../constants/orderConstants'
 
      export const orderCreateReducer = (state ={}, action) =>{
         switch(action.type){
@@ -73,31 +77,31 @@ import {ORDER_CREATE_SUCCESS,
      }
 
 
-     export const orderPayReducer = (
-        state ={}, action) =>{
-       switch(action.type){
-           case ORDER_PAY_REQUEST:
-               return{
+    //  export const orderPayReducer = (
+    //     state ={}, action) =>{
+    //    switch(action.type){
+    //        case ORDER_PAY_REQUEST:
+    //            return{
                   
-                   loading:true
-               }
-           case ORDER_PAY_SUCCESS:
-               return{
-                   loading:false,
-                  success: true,
+    //                loading:true
+    //            }
+    //        case ORDER_PAY_SUCCESS:
+    //            return{
+    //                loading:false,
+    //               success: true,
                    
-               }
-           case ORDER_PAY_FAIL:
-               return{
-                   loading:false,
-                   error: action.payload
-               }
-            case ORDER_PAY_RESET:
-                return {}
-           default:
-               return state
-       }
-    }
+    //            }
+    //        case ORDER_PAY_FAIL:
+    //            return{
+    //                loading:false,
+    //                error: action.payload
+    //            }
+    //         case ORDER_PAY_RESET:
+    //             return {}
+    //        default:
+    //            return state
+    //    }
+    // }
 
 
     export const orderListMyReducer = (
@@ -173,6 +177,32 @@ import {ORDER_CREATE_SUCCESS,
                case ORDER_DELIVERED_RESET:
                 return{}
          
+           default:
+               return state
+       }
+    }
+    export const orderPayOnDeliveryReducer = (
+        state ={}, action) =>{
+       switch(action.type){
+           case ORDER_PAY_ON_DELIVERY_REQUEST:
+               return{
+                  
+                   loading:true
+               }
+           case ORDER_PAY_ON_DELIVERY_SUCCESS:
+               return{
+                   loading:false,
+                  success: true,
+                  payOnDelivery: action.payload
+                   
+               }
+           case ORDER_PAY_ON_DELIVERY_FAIL:
+               return{
+                   loading:false,
+                   error: action.payload
+               }
+            case ORDER_PAY_ON_DELIVERY_RESET:
+                return {}
            default:
                return state
        }
