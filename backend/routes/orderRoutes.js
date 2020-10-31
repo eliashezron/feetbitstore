@@ -4,9 +4,10 @@ import {protect, admin} from '../middleware/authMiddleware.js'
 import { updateOrderToPayOnDelivery, updateOrderToDelivered, addOrderItems, getOrders, getOrderById, deleteOrder,
     // updateOrderToPaid, 
     getMyOrders} from '../controlers/orderController.js'
+    import { reduceCountInStock } from '../middleware/productMiddleware.js'
 
 router.route('/')
-.post(protect, addOrderItems)
+.post(protect, reduceCountInStock, addOrderItems)
 .get(protect, admin, getOrders)
 router.route('/myorders')
 .get(protect, getMyOrders)
