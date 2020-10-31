@@ -7,6 +7,8 @@ import Loader from '../components/Loader'
 import {getUserDetails, updateUserProfile} from '../actions/userActions'
 import {listMyOrders} from '../actions/orderActions'
 
+
+
 const ProfileScreen = ({location, history}) => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -39,6 +41,7 @@ const ProfileScreen = ({location, history}) => {
             if(!user.name){
                 dispatch(getUserDetails('profile'))
                 dispatch(listMyOrders())
+               
             }else{
                  setName(user.name)
                  setEmail(user.email)
