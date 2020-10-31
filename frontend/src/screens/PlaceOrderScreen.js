@@ -10,6 +10,10 @@ const PlaceOrderScreen = ({history}) => {
     const dispatch = useDispatch()
     const cart = useSelector(state => state.cart)
 
+    const orderCreate = useSelector(state => state.orderCreate)
+    const {order, success, error} = orderCreate
+
+
     // calculate prices
 
     const addDecimals = (num) =>{
@@ -17,17 +21,12 @@ const PlaceOrderScreen = ({history}) => {
     }
 
     cart.itemsPrice = addDecimals(cart.cartItems.reduce(
-        (acc, item) => acc + item.price* item.qty, 0)
-)
-    cart.shippingPrice= addDecimals(cart.itemsPrice< 250 ? 0 : 100)
+        (acc, item) => acc + item.price* item.qty, 0))
 
-    cart.taxPrice = addDecimals(Number((0.15 * cart.itemsPrice)))
+    cart.deliveryCharge= addDecimals(cart.itemsPrice< 5000000 ? 0 : 1000)
+   cart.totalPrice = (Number(cart.itemsPrice) + Number(cart.deliveryCharge)).toFixed(2)
 
-    cart.totalPrice = addDecimals(Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice))
-
-    const orderCreate = useSelector(state => state.orderCreate)
-    const {order, success, error} = orderCreate
-
+   
        useEffect(()=>{
            if(success){
                // eslint-disable-next-line
@@ -39,11 +38,10 @@ const PlaceOrderScreen = ({history}) => {
     const placeOrderHandler=()=>{
         dispatch(createOrder({
             orderItems:cart.cartItems,
-            shippingAddress: cart.shippingAddress,
+            deliveryAddress: cart.deliveryAddress,
             paymentMethod: cart.paymentMethod,
             itemsPrice:cart.itemsPrice,
-            shippingPrice:cart.shippingPrice,
-            taxPrice: cart.taxPrice,
+            deliveryCharge:cart.deliveryCharge,
             totalPrice:cart.totalPrice,
         }))
     }
@@ -54,13 +52,13 @@ const PlaceOrderScreen = ({history}) => {
                 <Col md={8}>
                     <ListGroup variant='flush'>
                         <ListGroup.Item>
-                            <h2>Shipping</h2>
+                            <h2>Delivery Address</h2>
                             <p>
                                 <strong>Address</strong>
-                                {cart.shippingAddress.address},
-                                {cart.shippingAddress.city}{''},
-                                {cart.shippingAddress.postalCode}{''},
-                                {cart.shippingAddress.country},
+                                {cart.deliveryAddress.address},
+                                {cart.deliveryAddress.town}{''},
+                                {cart.deliveryAddress.telephoneNumber}
+                               
                             </p>
                         </ListGroup.Item>
                         <ListGroup.Item>
@@ -108,16 +106,11 @@ const PlaceOrderScreen = ({history}) => {
                                     <Col><strong>UGX{cart.itemsPrice}</strong></Col>
                                 </Row>
                             </ListGroup.Item>
-                            <ListGroup.Item>
-                                <Row>
-                                    <Col>Tax</Col>
-                                    <Col>UGX{cart.taxPrice}</Col>
-                                </Row>
-                            </ListGroup.Item>
+                          
                             <ListGroup.Item>
                                 <Row>
                                     <Col>Shipping</Col>
-                                    <Col>UGX{cart.shippingPrice}</Col>
+                                    <Col>UGX{cart.deliveryCharge}</Col>
                                 </Row>
                             </ListGroup.Item>
                             <ListGroup.Item>

@@ -6,7 +6,8 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import {listAllOrders, deleteOrder} from '../actions/orderActions'
 
-const OrderListScreen = ({history}) => {
+const OrderListScreen = ({history, match}) => {
+  
     const dispatch = useDispatch()
 
     const orderListAll = useSelector(state => state.orderListAll)
@@ -50,9 +51,10 @@ const OrderListScreen = ({history}) => {
                        <tr>
                            <th>ID</th>
                            <th>USER</th>
+                           <th>MOBILE NUMBER</th>
                            <th>DATE</th>
                            <th>TOTALPRICE</th>
-                           <th>PAID</th>
+                           <th>PAY ON DELIVERY</th>
                            <th>DELIVERED</th>
                        </tr>
                    </thead>
@@ -61,10 +63,11 @@ const OrderListScreen = ({history}) => {
               <tr key={order._id}>
                 <td>{order._id}</td>
                 <td>{order.user && order.user.name}</td>
+                <td>{ order.user && order.user.telephoneNumber}</td>
                 <td>{order.createdAt.substring(0, 10)}</td>
                 <td>UGX{order.totalPrice}</td>
                 <td>
-                  {order.payOrderOnDelivery ? (
+                  {order.payOnDelivery ? (
                     order.placedAt.substring(0, 10)
                   ) : (
                     <i className='fas fa-times' style={{ color: 'red' }}></i>
@@ -94,6 +97,7 @@ const OrderListScreen = ({history}) => {
                    
                </Table>
            ) }
+          
         </>
     )
 }

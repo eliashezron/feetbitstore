@@ -117,8 +117,9 @@ import {ORDER_CREATE_SUCCESS,
            case ORDER_LIST_MY_SUCCESS:
                return{
                    loading:false,
-                  orders: action.payload,
-                   
+                  orders: action.payload.orders,
+                 
+               
                }
            case ORDER_LIST_MY_FAIL:
                return{

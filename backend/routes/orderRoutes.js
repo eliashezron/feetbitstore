@@ -16,7 +16,7 @@ router.route('/:id')
 // router.route('/:id/pay')
 // .put(protect, updateOrderToPaid)
 router.route('/:id/payondelivery')
-.put(protect, updateOrderToPayOnDelivery)
+.put( updateOrderToPayOnDelivery)
 router.route('/:id/deliver')
 .put(protect, admin, updateOrderToDelivered)
 

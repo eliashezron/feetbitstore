@@ -7,11 +7,11 @@ import Order from '../models/orderModel.js'
 // access private
 const addOrderItems = asyncHandler(async(req, res)=>{
     const { orderItems,
-    shippingAddress,
+    deliveryAddress,
     paymentMethod,
     itemsPrice,
-    taxPrice,
-    shippingPrice,
+    
+    deliveryCharge,
     totalPrice}= req.body
 
     if(orderItems && orderItems.length === 0){
@@ -22,11 +22,11 @@ const addOrderItems = asyncHandler(async(req, res)=>{
         const order = new Order({
         orderItems,
         user: req.user._id,
-        shippingAddress,
+        deliveryAddress,
         paymentMethod,
         itemsPrice,
-        taxPrice,
-        shippingPrice,
+        
+        deliveryCharge,
         totalPrice
         })
 
@@ -87,6 +87,12 @@ const updateOrderToPayOnDelivery = asyncHandler(async(req, res)=>{
     if(order){
         order.payOnDelivery = true
         order.placedAt = Date.now()
+        // order.paymentResult = {
+        //                 id: req.body.id,
+        //                 status: req.body.status,
+        //                 update_time: req.body.update_time,
+        //                 email_address: req.body.payer.email_address
+        //             }
         
         const updatedOrder= await order.save()
 
@@ -111,8 +117,13 @@ const getMyOrders = asyncHandler(async(req, res)=>{
 // route post/api/orders
 // access private
 const getOrders = asyncHandler(async(req, res)=>{
+    
+  
     const orders = await Order.find({}).populate('user', 'id name')
 
+
+
+ 
 
     res.json(orders)
    

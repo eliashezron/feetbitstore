@@ -11,8 +11,8 @@ const router = express.Router()
 router.route('/')
 .post(
    asyncHandler(async (req, res) => {
-      const {name, email, password} = req.body
-      const userExists = await User.findOne({email})
+      const {name, email, password, telephoneNumber} = req.body
+      const userExists = await User.findOne({email, telephoneNumber})
     
      if(userExists){
         res.status(400)
@@ -21,13 +21,15 @@ router.route('/')
      const user = await User.create({
         name,
         email,
-        password
+        password,
+        telephoneNumber,
      })
      if(user){
         res.status(201).json({
          _id:user._id,
          name: user.name,
          email:user.email,
+         telephoneNumber:user.telephoneNumber,
          isAdmin: user.isAdmin,
          token: generateToken(user._id)
       })
@@ -74,6 +76,7 @@ asyncHandler(async(req, res)=>{
       res.json({_id:user._id,
          name: user.name,
          email:user.email,
+         telephoneNumber:user.telephoneNumber,
          isAdmin: user.isAdmin,})
       
    }else{
@@ -91,6 +94,7 @@ asyncHandler(async(req, res)=>{
       if (user) {
         user.name = req.body.name || user.name
         user.email = req.body.email ||user.email
+        user.telephoneNumber = req.body.telephoneNumber || user.telephoneNumber
         if(req.body.password){
            user.password = req.body.password
         }
@@ -100,6 +104,7 @@ asyncHandler(async(req, res)=>{
          _id:UpdatedUser._id,
          name: UpdatedUser.name,
          email:UpdatedUser.email,
+         telephoneNumber:UpdatedUser.telephoneNumber,
          isAdmin: UpdatedUser.isAdmin,
          token: generateToken(UpdatedUser._id)
       })
@@ -138,6 +143,7 @@ asyncHandler(async(req, res)=>{
       if (user) {
         user.name = req.body.name || user.name
         user.email = req.body.email ||user.email
+        user.telephoneNumber= req.body.telephoneNumber|| user.telephoneNumber
         user.isAdmin = req.body.isAdmin
    
         const UpdatedUser =  await user.save()
@@ -146,6 +152,7 @@ asyncHandler(async(req, res)=>{
          _id:UpdatedUser._id,
          name: UpdatedUser.name,
          email:UpdatedUser.email,
+         telephoneNumber:UpdatedUser.telephoneNumber,
          isAdmin: UpdatedUser.isAdmin,
        
       })

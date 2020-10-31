@@ -10,6 +10,7 @@ import {listMyOrders} from '../actions/orderActions'
 const ProfileScreen = ({location, history}) => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
+   
     const [password, setPassword] = useState('')
     const [confirmpassword, setConfirmPassword] = useState('')
     const [message, setMessage] = useState(null)
@@ -83,6 +84,7 @@ const ProfileScreen = ({location, history}) => {
 
                     </Form.Control>
                 </Form.Group>
+              
                 <Form.Group controlId='password'>
                     <Form.Label>password</Form.Label>
                     <Form.Control
@@ -119,7 +121,7 @@ const ProfileScreen = ({location, history}) => {
                         <th>ID</th>
                         <th>DATE</th>
                         <th>TOTAL</th>
-                        <th>PAID</th>
+                        <th>PAY ON DELIVERY</th>
                         <th>DELIVERED</th>
                         <th></th>
                     </tr>
@@ -129,9 +131,9 @@ const ProfileScreen = ({location, history}) => {
                         <tr key={order._id}>
                             <td>{order._id}</td>
                             <td>{order.createdAt.substring(0, 10)}</td>
-                            <td>{order.totalPrice}</td>
-                            <td>{order.isPaid ? 
-                                order.paidAt.substring(0, 10):(
+                            <td>UGX{order.totalPrice}</td>
+                            <td>{order.payOnDelivery ? 
+                                order.placedAt.substring(0, 10):(
                                 <i className='fas fa-times' style={{color:'red'}}></i>
                             )}</td>
                             <td>{order.isDelivered ? 

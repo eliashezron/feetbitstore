@@ -50,7 +50,7 @@ export const logout = () => (dispatch)=> {
     
  localStorage.removeItem('userInfo')
  localStorage.removeItem('cartItems')
- localStorage.removeItem('shippingAddress')
+ localStorage.removeItem('deliveryAddress')
   localStorage.removeItem('paymentMethod')
  dispatch({type: USER_LOGOUT})
  dispatch({type: USER_DETAILS_RESET})
@@ -60,7 +60,7 @@ export const logout = () => (dispatch)=> {
 }
 
 
-export const register = (name, email, password) => async(dispatch)=>{
+export const register = (name, email,telephoneNumber, password) => async(dispatch)=>{
     try{
         dispatch({
             type: USER_REGISTER_REQUEST
@@ -73,7 +73,7 @@ export const register = (name, email, password) => async(dispatch)=>{
         }
 
         const{data}= await axios.post('/api/users', 
-        {name, email, password}, config)
+        {name, email, telephoneNumber, password}, config)
 
         dispatch({
             type:USER_REGISTER_SUCCESS,

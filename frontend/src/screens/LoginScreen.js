@@ -38,7 +38,7 @@ const LoginScreen = ({location, history}) => {
             {loading && <Loader/>}
             <Form onSubmit={submithandler}>
                 <Form.Group controlId='email'>
-                    <Form.Label>Email Adress</Form.Label>
+                    <Form.Label>Email Adress  </Form.Label>
                     <Form.Control
                     type='email'
                     placeholder='Enter email'

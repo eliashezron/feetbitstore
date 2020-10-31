@@ -26,14 +26,14 @@ const orderSchema = mongoose.Schema({
         
     }
     ],
-    shippingAddress:
+    deliveryAddress:
         {
         address:{type:String,
             required:true,},
-        city:{type:String,
+        town:{type:String,
             require:true,},
-        postalCode:{type:Number,
-            requiredd:true,},  
+        telephoneNumber:{type: Number,
+            required:true}
     },
 
     paymentMethod:{
@@ -53,14 +53,9 @@ const orderSchema = mongoose.Schema({
     //         },    
     // },
     
-    taxPrice:{
-        type:Number,
-        required:true,
-        default:0.0
-        
-    },
+   
     
-    shippingPrice:{
+    deliveryCharge:{
         type:Number,
         required:true,
         default:0.0

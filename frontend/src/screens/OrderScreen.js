@@ -109,10 +109,9 @@ const { loading:loadingPayOnDelivery, success:successPayOnDelivery,  } = orderPa
                             <a href={`mailto=${order.user.email}`}>{order.user.email}</a></p>
                             <p>
                                 <strong> Address </strong>
-                                {order.shippingAddress.address},
-                                {order.shippingAddress.city}{''},
-                                {order.shippingAddress.postalCode}{''},
-                                {order.shippingAddress.country},
+                                {order.deliveryAddress.address},
+                                {order.deliveryAddress.town}{''},
+                               
                             </p>
                             {order.isDelivered ? <Message variant='success'>Delivered on {order.deliveredAt}</Message>:
                             <Message variant='danger'>Not Delivered</Message>}
@@ -170,16 +169,11 @@ const { loading:loadingPayOnDelivery, success:successPayOnDelivery,  } = orderPa
                                     <Col>UGX{order.itemsPrice}</Col>
                                 </Row>
                             </ListGroup.Item>
-                            <ListGroup.Item>
-                                <Row>
-                                    <Col>Tax</Col>
-                                    <Col>UGX{order.taxPrice}</Col>
-                                </Row>
-                            </ListGroup.Item>
+                            
                             <ListGroup.Item>
                                 <Row>
                                     <Col>Shipping</Col>
-                                    <Col>UGX{order.shippingPrice}</Col>
+                                    <Col>UGX{order.deliveryCharge}</Col>
                                 </Row>
                             </ListGroup.Item>
                             <ListGroup.Item>

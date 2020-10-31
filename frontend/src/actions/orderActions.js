@@ -278,16 +278,15 @@ export const getOrderDetails= (id) => async(dispatch, getState)=>{
                         type: ORDER_PAY_ON_DELIVERY_REQUEST
                     })
             
-                    const {userLogin:{userInfo}} = getState()
+                   
             
                     const config = {
                       headers:{
-                        'Content-Type':'application/json',
-                        Authorization: `Bearer ${userInfo.token}`
+                        'Content-type':'application/json'
                       }
                   }
                     
-                    const {data} = await axios.put(`/api/orders/${orderId}/payondelivery`, config)
+                    const {data} = await axios.put(`/api/orders/${orderId}/payondelivery`,  config)
                     
                     
                     dispatch({
