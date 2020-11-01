@@ -109,7 +109,7 @@ const PlaceOrderScreen = ({history}) => {
                           
                             <ListGroup.Item>
                                 <Row>
-                                    <Col>Shipping</Col>
+                                    <Col>delivery</Col>
                                     <Col>UGX{cart.deliveryCharge}</Col>
                                 </Row>
                             </ListGroup.Item>

@@ -172,7 +172,7 @@ const { loading:loadingPayOnDelivery, success:successPayOnDelivery,  } = orderPa
                             
                             <ListGroup.Item>
                                 <Row>
-                                    <Col>Shipping</Col>
+                                    <Col>delivery</Col>
                                     <Col>UGX{order.deliveryCharge}</Col>
                                 </Row>
                             </ListGroup.Item>
