@@ -4,9 +4,10 @@
   "description": "online liquor store",
   "main": "server.js",
   "type": "module",
+  "engines": { "node": ">=12.19.0" },
   "repository": {
     "type": "git",
-    "url": "https://github/eliashezron/bartenderUganda"
+    "url": "https://github/eliashezron/BartenderUg"
   },
   "keywords": [
     "liquor",
