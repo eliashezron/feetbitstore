@@ -1,4 +1,13 @@
+.header-main{
+    position:sticky!important;
+    top: 0 !important;
+    z-index: 100 !important;
+
+}
 .header{
     background-color: black;
     
+}
+.header-cart{
+    display: flex;
 }

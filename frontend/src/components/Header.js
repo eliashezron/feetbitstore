@@ -11,12 +11,16 @@ import './header.css'
   const dispatch = useDispatch()
   const userLogin = useSelector(state => state.userLogin)
   const {userInfo} = userLogin
+  const cart = useSelector(state => state.cart)
+  const {cartItems} = cart
 
   const logoutHandler= () =>{
     dispatch(logout())
   }
+  
     return ( <
-        header >
+        header className='header-main' >
+        <>
         <Navbar  className ='header' variant='dark' expand="lg" collapseOnSelect>
         <Container>
         <LinkContainer to='/'>
@@ -27,9 +31,11 @@ import './header.css'
         <Navbar.Collapse id="basic-navbar-nav">
         <Route render={({history}) => <SearchBox history={history}/>}/>
           <Nav className="ml-auto">
-          <LinkContainer to='/cart'>
+          <LinkContainer className='header-cart' to='/cart'>
               <Nav.Link href="/cart">
-            <i className='fas fa-shopping-cart'></i>cart</Nav.Link>
+            <i className=' header-cart fas fa-shopping-cart'></i>cart
+            <span className="header__basketCount" >({cartItems.reduce((acc, item)=>acc+item.qty,0)})</span>
+            </Nav.Link>
           </LinkContainer>
           {userInfo ? (
             <NavDropdown title = {userInfo.name} id='username'>
@@ -63,7 +69,9 @@ import './header.css'
 
         </Navbar.Collapse>
         </Container>
-      </Navbar> <
+      </Navbar> 
+      </>
+      <
         /header>
     )
 }

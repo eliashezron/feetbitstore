@@ -3,6 +3,7 @@ import{Link} from 'react-router-dom'
 import{ useDispatch, useSelector} from 'react-redux'
 import { Row, Col, ListGroup, Image, Form, Button, Card} from 'react-bootstrap'
 import Message from '../components/Message'
+import CurrencyFormat from 'react-currency-format'
 import {addToCart, removeFromCart} from '../actions/cartActions'
 
 
@@ -12,6 +13,7 @@ const CartScreen =({match, location, history })=>{
   const dispatch = useDispatch()
   const cart = useSelector(state => state.cart)
   const {cartItems} = cart
+ 
 
   useEffect(() => {
            if (productId) {
@@ -71,14 +73,17 @@ const CartScreen =({match, location, history })=>{
           </ListGroup>
         )}
       </Col>
+      
       <Col md={4}>
         <Card>
           <ListGroup variant='flush'>
             <ListGroup.Item>
+
               <h2>Subtotal({cartItems.reduce((acc, item)=>acc+item.qty,0)})
               items
               </h2>
               UGX{cartItems.reduce((acc, item)=> acc + item.qty*item.price,0).toFixed(2)}
+
             </ListGroup.Item>
             <ListGroup.Item>
               <Button type='Button' className='btn-block'
@@ -90,6 +95,7 @@ const CartScreen =({match, location, history })=>{
           </ListGroup>
         </Card>
       </Col>
+     
       
     </Row>
   )
