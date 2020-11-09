@@ -1,16 +1,18 @@
 import React from 'react'
 import {Link} from  'react-router-dom'
-import {Card} from 'react-bootstrap'
+import {Card, CardDeck} from 'react-bootstrap'
 import Rating from './Rating'
-
+import './Product.css'
+// my-3 p-3 rounded
 const Product = ({product}) => {
     return (
-        <Card className='my-3 p-3 rounded'>
+      <CardDeck>
+        <Card border="dark" className='my-3 p-3 rounded'>
         <Link to={`/product/${product._id}`}>
           <Card.Img src={product.image} variant='top' />
         </Link>
   
-        <Card.Body>
+        <Card.Body> 
           <Link to={`/product/${product._id}`}>
             <Card.Title as='div'>
               <strong>{product.name}</strong>
@@ -24,9 +26,10 @@ const Product = ({product}) => {
             />
           </Card.Text>
   
-          <Card.Text as='h3'>UGX{product.price}</Card.Text>
+          <Card.Text as='h8'>UGX<strong>{product.price}</strong></Card.Text>
         </Card.Body>
       </Card>
+      </CardDeck>
     )
 }
 
