@@ -1,5 +1,5 @@
 {
-  "name": "FeetbitOnlineStore",
+  "name": "feetbit",
   "version": "1.0.0",
   "description": "online snicker store",
   "main": "server.js",
