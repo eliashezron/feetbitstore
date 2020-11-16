@@ -1,22 +1,24 @@
 {
-  "name": "bartenderuganda",
+  "name": "FeetbitOnlineStore",
   "version": "1.0.0",
-  "description": "online liquor store",
+  "description": "online snicker store",
   "main": "server.js",
   "type": "module",
-  "engines": { "node": ">=12.19.0" },
+  "engines": {
+    "node": ">=12.19.0"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github/eliashezron/BartenderUg"
+    "url": "https://github/eliashezron/feetbitstore"
   },
   "keywords": [
-    "liquor",
+    "sneakers",
     "online",
     "store",
-    "alcohol",
-    "beer",
-    "wine",
-    "spirits"
+    "trainers",
+    "shoes",
+    "running",
+    "footware"
   ],
   "scripts": {
     "start": "node backend/server",

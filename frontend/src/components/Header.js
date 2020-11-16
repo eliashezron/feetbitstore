@@ -24,7 +24,7 @@ import './header.css'
         <Navbar  className ='header' variant='dark' expand="lg" collapseOnSelect>
         <Container>
         <LinkContainer to='/'>
-            <Navbar.Brand >BarTenderUg</Navbar.Brand>
+            <Navbar.Brand >Feetbit</Navbar.Brand>
         </LinkContainer>
         
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
