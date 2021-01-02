@@ -4,8 +4,10 @@ import {useDispatch, useSelector} from 'react-redux'
 import {LinkContainer } from 'react-router-bootstrap'
 import SearchBox from './SearchBox'
 import {Container, Nav, Navbar, NavDropdown} from 'react-bootstrap'
+import LocalMallIcon from '@material-ui/icons/LocalMall';
 import {logout} from '../actions/userActions.js'
 import './header.css'
+
   const Header = () => {
 
   const dispatch = useDispatch()
@@ -22,21 +24,29 @@ import './header.css'
         header className='header-main' >
         <>
         <Navbar  className ='header' variant='dark' expand="lg" collapseOnSelect>
-        <Container>
+        <Container md='auto' className='container-header'>
+        {/* <Container > */}
         <LinkContainer to='/'>
             <Navbar.Brand >Feetbit</Navbar.Brand>
-        </LinkContainer>
-        
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-        <Route render={({history}) => <SearchBox history={history}/>}/>
-          <Nav className="ml-auto">
-          <LinkContainer className='header-cart' to='/cart'>
+        </LinkContainer>  
+        <Container className='search'> 
+            <Route render={({history}) => <SearchBox history={history}/>}/>
+          </Container> 
+          <LinkContainer md='auto' className='header-cart' to='/cart'>
               <Nav.Link href="/cart">
-            <i className=' header-cart fas fa-shopping-cart'></i>cart
-            <span className="header__basketCount" >({cartItems.reduce((acc, item)=>acc+item.qty,0)})</span>
+            
+              <LocalMallIcon className='cart-icon'/>
+            
+            
+            <span className="header__basketCount" >{cartItems.reduce((acc, item)=>acc+item.qty,0)}</span>
             </Nav.Link>
           </LinkContainer>
+          {/* </Container> */}
+          
+        <Navbar.Toggle aria-controls="basic-navbar-nav" md='auto'/>
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ml-auto">
+
           {userInfo ? (
             <NavDropdown title = {userInfo.name} id='username'>
               <LinkContainer to='/profile'>
