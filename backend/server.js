@@ -36,13 +36,14 @@ app.use('/api/users', userRoutes)
 app.use('/api/orders', orderRoutes)
 app.use('/api/upload', uploadRoutes)
 
-// deloying to the server
-if(process.env.NODE_ENV === 'production'){
-    app.use(express.static(path.join(__dirname, '/frontend/build')))
+// // deloying to the server
+// if(process.env.NODE_ENV === 'production'){
+//     app.use(express.static(path.join(__dirname, '/frontend/build')))
 
-    app.get('*', (req, res)=>
-     res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html')))
-}
+//     app.get('*', (req, res)=>
+//      res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html')))
+// }
+app.get('/', (req, res) => { res.send('Hello from Express!')
 
 // // middleware
 // error middleware
