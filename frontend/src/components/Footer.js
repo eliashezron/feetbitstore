@@ -21,7 +21,7 @@ const Footer = () => {
                 <a href="https://www.facebook.com/feetbitstore-107935234464128" target="_blank" rel="noopener noreferrer"><FacebookIcon/></a>
                 </Col>
                 <Col md='auto' className='face'>
-                <a href="https://api.whatsapp.com/send?phone=+789652909&amp;text=Hi there! I saw this on your webApplication, i would like to inquire :)" target="_blank" rel="noopener noreferrer"><WhatsAppIcon/></a>
+                <a href="https://api.whatsapp.com/send?phone=+256789652909&amp;text=Hi there! I saw this on your webApplication, i would like to inquire :)" target="_blank" rel="noopener noreferrer"><WhatsAppIcon/></a>
                 </Col>
             </Row>
             <Row>
