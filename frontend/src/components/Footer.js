@@ -15,7 +15,7 @@ const Footer = () => {
                 <a href="https://instagram.com/feetbitstore?igshid=1dswid66t46br" target="_blank" rel="noopener noreferrer"><InstagramIcon/></a>
                 </Col>
                 <Col md='auto' className='face'>
-                <a href="https://twitter.com/feetbitstore/media" target="_blank" rel="noopener noreferrer"><TwitterIcon/></a>
+                <a href="https://mobile.twitter.com/feetbitstore" target="_blank" rel="noopener noreferrer"><TwitterIcon/></a>
                 </Col>
                 <Col md='auto' className='face'>
                 <a href="https://www.facebook.com/feetbitstore-107935234464128" target="_blank" rel="noopener noreferrer"><FacebookIcon/></a>
