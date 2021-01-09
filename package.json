@@ -26,8 +26,7 @@
     "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "data:import": "node backend/seeder",
-    "data:destroy": "node backend/seeder -d",
-    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm run server"
+    "data:destroy": "node backend/seeder -d"
   },
   "author": "eliashezron",
   "license": "MIT",
