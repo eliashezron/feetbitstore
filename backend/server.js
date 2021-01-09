@@ -43,7 +43,7 @@ app.use('/api/upload', uploadRoutes)
 //     app.get('*', (req, res)=>
 //      res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html')))
 // }
-app.get('/', (req, res) => { res.send('Hello from Express!')
+app.get('/', (req, res) => res.send('Hello from Express!'))
 
 // // middleware
 // error middleware
@@ -54,5 +54,4 @@ app.use(errorHandler)
 
 // port listen
 const PORT = process.env.PORT || 5000 
-
-app.listen(PORT, console.log(`server running  in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold))
+app.listen(PORT, console.log (`server running in ${process.env.NODE_ENV} on ${PORT}`.yellow.bold))
