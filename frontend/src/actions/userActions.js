@@ -28,7 +28,7 @@ export const login = (email, password) => async(dispatch)=>{
             }
         }
 
-        const{data}= await axios.post('/api/users/login', 
+        const{data}= await axios.post('https://backend12345678910.herokuapp.com/api/users/login', 
         {email, password}, config)
 
         dispatch({
@@ -72,7 +72,7 @@ export const register = (name, email,telephoneNumber, password) => async(dispatc
             }
         }
 
-        const{data}= await axios.post('/api/users', 
+        const{data}= await axios.post('https://backend12345678910.herokuapp.com/api/users', 
         {name, email, telephoneNumber, password}, config)
 
         dispatch({
@@ -110,7 +110,7 @@ export const register = (name, email,telephoneNumber, password) => async(dispatc
             }
         }
 
-        const{data}= await axios.get(`/api/users/${id}`, 
+        const{data}= await axios.get(`https://backend12345678910.herokuapp.com/api/users/${id}`, 
          config)
 
         dispatch({
@@ -144,7 +144,7 @@ export const register = (name, email,telephoneNumber, password) => async(dispatc
                     }
                 }
         
-                const{data}= await axios.put(`/api/users/profile`, user, 
+                const{data}= await axios.put(`https://backend12345678910.herokuapp.com/api/users/profile`, user, 
                  config)
         
                 dispatch({
@@ -187,7 +187,7 @@ export const listUsers = () => async(dispatch, getState)=>{
             }
         }
 
-        const{data}= await axios.get(`/api/users`, 
+        const{data}= await axios.get(`https://backend12345678910.herokuapp.com/api/users`, 
          config)
 
         dispatch({
@@ -226,7 +226,7 @@ export const deleteUser = (id) => async(dispatch, getState)=>{
             }
         }
 
-         await axios.delete(`/api/users/${id}`, 
+         await axios.delete(`https://backend12345678910.herokuapp.com/api/users/${id}`, 
          config)
 
         dispatch({
@@ -265,7 +265,7 @@ export const updateUser = (user) => async(dispatch, getState)=>{
             }
         }
 
-         const {data}= await axios.put(`/api/users/${user._id}`, user, 
+         const {data}= await axios.put(`https://backend12345678910.herokuapp.com/api/users/${user._id}`, user, 
          config)
 
         dispatch({
