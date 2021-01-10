@@ -1,0 +1,20 @@
+.searchiconButton{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    /* height: 35px; */
+    border-radius: 5% !important;
+    background-color: white;
+    /* margin-right:20%; */
+}
+.search-input{
+    border: none !important;
+    display: flex;
+    flex:1;
+    
+}
+.button{
+    height:35px !important;
+    padding: 2px !important;
+    padding-right: 2px !important;
+}

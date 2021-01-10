@@ -6,13 +6,11 @@ node_modules/
 /.pnp
 .pnp.js
 
-/lib
+
 
 # testing
 /coverage
 
-# ingnore frontend
-/frontend
 
 # production
 /frontend/build
