@@ -1,6 +1,6 @@
 {
   "name": "myapp",
-  "proxy": "https://backend12345678910.herokuapp.com/",
+  "proxy": "https://backend12345678910.herokuapp.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
