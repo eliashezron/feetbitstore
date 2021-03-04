@@ -7,12 +7,12 @@ import './Product.css'
 const Product = ({product}) => {
     return (
       <CardDeck>
-        <Card border="dark" className='my-3 p-3 rounded'>
+        <Card border="none" >
         <Link to={`/product/${product._id}`}>
           <Card.Img src={product.image} variant='top' />
         </Link>
   
-        <Card.Body> 
+        {/* <Card.Body> 
           <Link to={`/product/${product._id}`}>
             <Card.Title as='div'>
               <strong>{product.name}</strong>
@@ -25,9 +25,9 @@ const Product = ({product}) => {
               text={`${product.numReviews} reviews`}
             />
           </Card.Text>
-  
+          className='my-3 p-3 rounded'
           <Card.Text as='h8'>UGX<strong>{product.price}</strong></Card.Text>
-        </Card.Body>
+        </Card.Body> */}
       </Card>
       </CardDeck>
     )

@@ -10,7 +10,7 @@ import Paginate from '../components/Paginate'
 import ProductCarousel from '../components/ProductCarousel'
 import Meta from '../components/Meta'
 import {listProducts} from '../actions/productActions'
-
+import './HomeScreen.css'
 
 const HomeScreen = ({match}) => {
     const keyword = match.params.keyword
@@ -40,10 +40,10 @@ const HomeScreen = ({match}) => {
               <Message variant= 'danger'>{error} </Message> 
               ):( 
                   <>
-                  <Row>
+                  <Row className='row'>
             {products.map((product) => (
-              <Col key={product._id} sm={12} xs={6} md={4} lg={4} xl={3}>
-                <Product product={product} />
+              <Col className='column' key={product._id} sm={12} xs={6} md={4} lg={4} xl={3}>
+                <Product className='column-img' product={product} />
               </Col>
             ))}
           </Row>
