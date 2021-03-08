@@ -1,0 +1,7 @@
+.product-img{
+    image-orientation: from-image;
+    shape-image-threshold: unset;
+    border-radius: 4px;	
+    /* width: auto;			
+    height: auto; */
+}

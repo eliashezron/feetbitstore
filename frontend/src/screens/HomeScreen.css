@@ -3,9 +3,10 @@
     box-sizing: border-box;
 }
 .row{
-    display: flex !important;
+    display: flex!important;
     flex-wrap: wrap !important;
     padding: 0 4px !important;
+    grid-area: inherit;
 }
 .column{
     flex: 25% !important;

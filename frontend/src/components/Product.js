@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from  'react-router-dom'
 import {Card, CardDeck} from 'react-bootstrap'
-import Rating from './Rating'
+// import Rating from './Rating'
 import './Product.css'
 // my-3 p-3 rounded
 const Product = ({product}) => {
@@ -9,7 +9,7 @@ const Product = ({product}) => {
       <CardDeck>
         <Card border="none" >
         <Link to={`/product/${product._id}`}>
-          <Card.Img src={product.image} variant='top' />
+          <Card.Img className='product-img' src={product.image} variant='top' />
         </Link>
   
         {/* <Card.Body> 
