@@ -1,6 +1,5 @@
 import React from 'react'
 import {Link} from  'react-router-dom'
-import {Card, CardDeck} from 'react-bootstrap'
 // import Rating from './Rating'
 import './Product.css'
 // my-3 p-3 rounded
@@ -8,7 +7,7 @@ const Product = ({product}) => {
     return (
       <div className='div'>
         <Link to={`/product/${product._id}`}>
-          <img className='product-img' src={product.image} variant='top'/>
+          <img className='product-img' src={product.image} variant='top' alt={product.name}/>
         </Link>
         {/* <Card.Body> 
           <Link to={`/product/${product._id}`}>
