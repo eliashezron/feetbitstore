@@ -6,12 +6,10 @@ import './Product.css'
 // my-3 p-3 rounded
 const Product = ({product}) => {
     return (
-      <CardDeck>
-        <Card border="none" >
+      <div className='div'>
         <Link to={`/product/${product._id}`}>
-          <Card.Img className='product-img' src={product.image} variant='top' />
+          <img className='product-img' src={product.image} variant='top'/>
         </Link>
-  
         {/* <Card.Body> 
           <Link to={`/product/${product._id}`}>
             <Card.Title as='div'>
@@ -28,8 +26,7 @@ const Product = ({product}) => {
           className='my-3 p-3 rounded'
           <Card.Text as='h8'>UGX<strong>{product.price}</strong></Card.Text>
         </Card.Body> */}
-      </Card>
-      </CardDeck>
+      </div>
     )
 }
 

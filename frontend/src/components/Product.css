@@ -1,7 +1,13 @@
+.div{
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: flex-end;
+    max-height: 400px; 
+    min-width: 120px;
+    background-color: inherit;
+}
 .product-img{
-    image-orientation: from-image;
-    shape-image-threshold: unset;
-    border-radius: 4px;	
-    /* width: auto;			
-    height: auto; */
+    height: 100%;
+    width: 100%;
 }

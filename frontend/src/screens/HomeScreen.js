@@ -92,7 +92,7 @@ const HomeScreen = ({match}) => {
                 Go Back
             </Link>
         )}
-          <h1>Lastest Products</h1>
+          <h4>Lastest Products</h4>
           {loading ? <Loader/>: error ?(
               <Message variant= 'danger'>{error} </Message> 
               ):( 
@@ -101,10 +101,11 @@ const HomeScreen = ({match}) => {
                     <div className={`layout-stack `}><ReorderTwoToneIcon onClick={()=> setIsGrid(false)}/></div>
                     <div className={`layout-grid`}><AppsTwoToneIcon onClick={()=>setIsGrid(true)}/></div>
                   </div>
-                  <div className={`list ${isGrid===false?'stack':''}`} >
+                  
+                  <div  >
                       {/* sm={12} xs={6} md={4} lg={4} xl={3} */}
                       {products.map((product) => (
-                    <div  key={product._id} >
+                    <div className={`list ${isGrid===false?'stack':''}`} key={product._id} >
                       <Product className='column-img' product={product} />
                     </div>
                     ))}
