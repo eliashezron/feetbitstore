@@ -23,8 +23,8 @@ const SearchBox = ({history}) => {
             <Form.Control type='text' name='q' onChange={(e)=>
             setKeyword(e.target.value) }
             placeholder='search Products...'
-            classname='mr-sm-2 ml-sm-5'
-            className='search-input'>
+            className='mr-sm-2 ml-sm-5 search-input'
+            >
             </Form.Control>
         </Form>
         
