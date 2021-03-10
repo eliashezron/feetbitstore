@@ -1,4 +1,5 @@
 import React from "react"
+import './App.css'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import {Container} from 'react-bootstrap'
 import Header from './components/Header'
@@ -18,10 +19,13 @@ import UserEditScreen from './screens/UserEditScreen'
 import ProductListScreen from './screens/ProductListScreen'
 import ProductEditScreen from './screens/ProductEditScreen'
 import OrderListScreen from './screens/OrderListScreen'
+import NavigationIcons from "./screens/NavigationIcons"
 const App = () => {
   return ( 
-  <Router>  
-    <Header / >
+  <Router>
+    <body> 
+    
+    <Header className='header'/ >
     <main >
     <Container>  
     <Route path='/login' component={LoginScreen}/>
@@ -43,9 +47,12 @@ const App = () => {
     <Route path='/search/:keyword/page/:pageNumber' component={HomeScreen} />
     <Route path='/search/:keyword' component={HomeScreen} exact/>
     <Route path='/page/:pageNumber' component={HomeScreen} />
+    <Route path='/aboutus' component={Footer} />
     </Container>
     </main >
-    <Footer / >
+    {/* <Footer / > */}
+    <NavigationIcons className='navigation-icons'/>
+    </body> 
     </Router> 
   )
 }
