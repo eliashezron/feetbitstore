@@ -4,9 +4,9 @@
 } */
 .icon{
     transform: scale(1.3);
-    color: white;
+    color: black;
 }
 .icon-x{
     transform: scale(1.3);
-    color: black;
+    color: white;
 }
