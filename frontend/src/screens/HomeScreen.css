@@ -30,6 +30,8 @@
 
   .list {
     margin-top:5px !important;
+    align-items: center;
+    justify-content: center;
 
   }
   .list > div {
