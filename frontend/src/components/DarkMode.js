@@ -37,7 +37,7 @@ useEffect(()=>{
             <a className='cursor-pointer'
             onClick={()=> setMode(mode =>(mode === 'dark' ? 'light': 'dark'))
             }>
-                {mode==='dark'? <ToggleOnIcon className='icon'/> :<ToggleOffIcon className='icon'/> }
+                {mode==='dark'? <ToggleOnIcon className='icon'/> :<ToggleOffIcon className='icon-x'/> }
             </a>
     )
 }

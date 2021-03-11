@@ -1,4 +1,5 @@
 *{
+    padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
@@ -33,7 +34,7 @@
   }
   .list > div {
     float:left !important;
-    width:calc(33.33% - 10px)!important ;
+    width:calc(33.33% - 4px)!important ;
     height:25vw !important;
     background:#555 !important;
     margin:2px !important;
@@ -45,7 +46,7 @@
     display: inline;
     justify-content: center;
     align-items: center;
-    width:calc(100% - 20px) !important;
+    width:calc(100% - 10px) !important;
     height: 350px !important;;
   }
   .list > div .column-img {
