@@ -2,7 +2,8 @@
     position:sticky!important;
     top: 0 !important;
     z-index: 100 !important;
-    /* width: 100%; */
+    justify-content: space-evenly!important;
+    width: 100%;
 }
 .header{
     background-color:#859D9F;

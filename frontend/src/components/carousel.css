@@ -1,3 +1,7 @@
 .carousel{
     background-color: #C2A298;
 }
+.carousel.darkmode{
+    background-color: #1d2127!important;
+  color: #fff;
+}

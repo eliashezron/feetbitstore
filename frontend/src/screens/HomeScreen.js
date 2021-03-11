@@ -20,7 +20,7 @@ const HomeScreen = ({match}) => {
 
     const dispatch = useDispatch()
     const [isGrid, setIsGrid] = useState(true)
-    console.log(isGrid)
+    // console.log(isGrid) 
 
     const productList = useSelector((state) => state.productList)
     const{loading, error, products, page, pages} = productList

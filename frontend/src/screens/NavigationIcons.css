@@ -1,3 +1,7 @@
+ul.dark-mode{
+  background-color: #1d2127!important;
+  color: #fff;
+}
 nav {
     position: fixed;
     bottom:0;
@@ -32,7 +36,7 @@ nav {
   
   nav ul li p {
     font-size: 12px;
-    margin: 2px 0;
+    /* margin: 2px 0; */
   }
   
   nav ul li:hover,
@@ -54,3 +58,9 @@ nav {
     start of phone styles
     
     } */
+    body.dark-mode.navigation-icons{
+      background-color: #1d2127!important;
+      color: #fff !important;
+      height: 100% !important;
+      width: 100% !important;
+    }

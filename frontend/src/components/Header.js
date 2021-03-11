@@ -7,6 +7,7 @@ import {Container, Nav, Navbar, NavDropdown} from 'react-bootstrap'
 import LocalMallIcon from '@material-ui/icons/LocalMall';
 import {logout} from '../actions/userActions.js'
 import './header.css'
+import DarkMode from './DarkMode'
 
   const Header = () => {
 
@@ -34,13 +35,11 @@ import './header.css'
           </Container> 
           <LinkContainer md='auto' className='header-cart' to='/cart'>
               <Nav.Link href="/cart">
-            
               <LocalMallIcon className='cart-icon'/>
-            
-            
             <span className="header__basketCount" >{cartItems.reduce((acc, item)=>acc+item.qty,0)}</span>
             </Nav.Link>
           </LinkContainer>
+          <DarkMode className='ml-center'/>
           {/* </Container> */}
           
         <Navbar.Toggle aria-controls="basic-navbar-nav" md='auto'/>
