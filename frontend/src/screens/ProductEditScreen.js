@@ -22,7 +22,7 @@ const ProductEditScreen = ({match, history}) => {
     const [description, setDescription] = useState('')
     const [uploading, setUploading] = useState(false)
     const [previewSource, setPreviewSource] = useState('')
-    const [selectedFile, setSelectedFile] = useState();
+    // const [selectedFile, setSelectedFile] = useState();
     
     const dispatch = useDispatch()
 
@@ -60,11 +60,10 @@ const ProductEditScreen = ({match, history}) => {
     const uploadFileHandler =(e)=>{
         const file = e.target.files[0]
         previewFile(file)
-        setSelectedFile(file)
+        // setSelectedFile(file)
         // setImage(e.target.value)
-
         const reader = new FileReader()
-        reader.readAsDataURL(selectedFile)
+        reader.readAsDataURL(file)
         reader.onloadend=()=>{
             uploadImage(reader.result)
         }
@@ -83,7 +82,7 @@ const ProductEditScreen = ({match, history}) => {
                     JSON.stringify({data:base64EncodedImage})
                 
                 }
-                const {data} = await axios.post('/api/upload', config)
+                const {data} = await axios.post(`https://backend12345678910.herokuapp.com/api/upload`, config)
                 // setImage()
                 setImage(data)
                 setPreviewSource('')
