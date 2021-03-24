@@ -15,7 +15,7 @@ useEffect(()=>{
 },[])
 
 const setPreferedTheme=()=>{
-    const _mode = localStorage.getitem('mode')
+    const _mode = localStorage.getItem('mode')
     if(_mode){
         setMode(_mode)
     }else{
