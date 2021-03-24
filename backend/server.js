@@ -11,6 +11,7 @@ import orderRoutes from './routes/orderRoutes.js'
 // import uploadRoute from './routes/uploadRoutes.js'
 import {notFound, errorHandler} from './middleware/errorMiddleware.js'
 import cloud from '../utils/cloudinary.js'
+import asyncHandler from 'express-async-handler'
 
 // app config
 const __dirname = path.resolve(path.dirname('')); 
@@ -38,12 +39,13 @@ app.use('/api/orders', orderRoutes)
 
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
-app.post('/api/upload', async(req, res=>{
+app.post('/api/upload', asyncHandler(req, res=>{
    try{
        const fileStr = req.body.data;
-       await cloud.uploader.upload(fileStr,{
+      const result = await cloud.uploader.upload(fileStr,{
            upload_preset:'ml_default'
        })
+       console.log(result)
        res.json({msg:'uploaded succesfully'})
    }catch(err){
        console.log(err)
