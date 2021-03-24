@@ -38,13 +38,12 @@ app.use('/api/orders', orderRoutes)
 
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
-app.post('/api/upload',async(req, res=>{
+app.post('/api/upload', async(req, res=>{
    try{
        const fileStr = req.body.data;
-       const uploadResponse = await cloud.uploader.upload(fileStr,{
+       await cloud.uploader.upload(fileStr,{
            upload_preset:'ml_default'
        })
-       console.log(uploadResponse)
        res.json({msg:'uploaded succesfully'})
    }catch(err){
        console.log(err)
