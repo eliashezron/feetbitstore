@@ -22,6 +22,7 @@ const ProductEditScreen = ({match, history}) => {
     const [description, setDescription] = useState('')
     const [uploading, setUploading] = useState(false)
     const [previewSource, setPreviewSource] = useState('')
+    const [selectedFile, setSelectedFile] = useState();
     
     const dispatch = useDispatch()
 
@@ -44,7 +45,6 @@ const ProductEditScreen = ({match, history}) => {
              }else{
                 setName(product.name)
                 setImage(product.Image)
-                
                 setPrice(product.price)
                 setBrand(product.brand)
                 setDescription(product.description)
@@ -57,21 +57,33 @@ const ProductEditScreen = ({match, history}) => {
     }, [dispatch,history, productId, product, successUpdate  ])
 
 
-    const uploadFileHandler = async(e)=>{
+    const uploadFileHandler =(e)=>{
         const file = e.target.files[0]
         previewFile(file)
-        const formData = new FormData()
-        formData.append('image', file)
-        setUploading(true)
+        setSelectedFile(file)
+        setImage(e.target.value)
 
+        const reader = new FileReader
+        reader.readAsDataURL(selectedFile)
+        reader.onloadend=()=>{
+            uploadImage(reader.result)
+        }
+        // const formData = new FormData()
+        // formData.append('image', file)
+        setUploading(true)
+}
+       const uploadImage=async(base64EncodedImage)=>{
+            console.log(base64EncodedImage)
         try{
             const config = {
                 headers:{
-                    'Content-Type':'multipart/form-data'
+                    'Content-Type':'application/json'
+                },
+                body:{
+                    JSONstringify({data:base64EncodedImage})
                 }
                 }
-                const {data} = await axios.post('/api/upload', formData, config)
-
+                const {data} = await axios.post('/api/upload', config)
                 setImage(data)
                 setUploading(false)
 
@@ -133,7 +145,6 @@ const ProductEditScreen = ({match, history}) => {
                     placeholder='Enter Price'
                     value={price}
                     onChange={(e)=> setPrice(e.target.value)}>
-
                     </Form.Control>
                 </Form.Group>
                 <Form.Group controlId='image'>
