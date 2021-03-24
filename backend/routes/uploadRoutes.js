@@ -1,25 +1,12 @@
-import path from 'path';
-import express from 'express';
-import dotenv from 'dotenv';
-import cloudinary from 'cloudinary';
-import { CloudinaryStorage } from 'multer-storage-cloudinary';
-import multer from 'multer';
-dotenv.config();
-// ml_default
-const cloud = cloudinary.v2;
-//  
-cloud.config({
-cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-api_key: process.env.CLOUDINARY_API_KEY,
-api_secret: process.env.CLOUDINARY_API_SECRET,
-});
-
+import cloud from '../utils/cloudinary.js'
 const uploadRoute = async(req, res=>{
    try{
        const fileStr = req.body.data;
-       const UploadResponse = await cloudinary.uploader.upload(fileStr,{
+       const uploadResponse = await cloud.uploader.upload(fileStr,{
            upload_preset:'ml_default'
        })
+       console.log(uploadResponse)
+       res.json({msg:'uploaded succesfully'})
    }catch(err){
        console.log(err)
        res.status(500).json({err : 'something went wrong'})
