@@ -63,7 +63,7 @@ const ProductEditScreen = ({match, history}) => {
         setSelectedFile(file)
         setImage(e.target.value)
 
-        const reader = new FileReader
+        const reader = new FileReader()
         reader.readAsDataURL(selectedFile)
         reader.onloadend=()=>{
             uploadImage(reader.result)
@@ -84,7 +84,9 @@ const ProductEditScreen = ({match, history}) => {
                 
                 }
                 const {data} = await axios.post('/api/upload', config)
-                setImage(data)
+                // setImage()
+                setImage('')
+                setPreviewSource('')
                 setUploading(false)
 
         }catch(error){
