@@ -79,9 +79,9 @@ const ProductEditScreen = ({match, history}) => {
                 headers:{
                     'Content-Type':'application/json'
                 },
-                body:{
-                    JSONstringify({data:base64EncodedImage})
-                }
+                body:
+                    JSON.stringify({data:base64EncodedImage})
+                
                 }
                 const {data} = await axios.post('/api/upload', config)
                 setImage(data)
