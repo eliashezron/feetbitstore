@@ -21,6 +21,7 @@ const ProductEditScreen = ({match, history}) => {
     const [category, setCategory] = useState('')
     const [description, setDescription] = useState('')
     const [uploading, setUploading] = useState(false)
+    const [previewSource, setPreviewSource] = useState('')
     
     const dispatch = useDispatch()
 
@@ -58,6 +59,7 @@ const ProductEditScreen = ({match, history}) => {
 
     const uploadFileHandler = async(e)=>{
         const file = e.target.files[0]
+        previewFile(file)
         const formData = new FormData()
         formData.append('image', file)
         setUploading(true)
@@ -76,6 +78,13 @@ const ProductEditScreen = ({match, history}) => {
         }catch(error){
             console.error(error)
             setUploading(false)
+        }
+    }
+    const previewFile=(file)=>{
+        const reader = new FileReader()
+        reader.readAsDataURL(file);
+        reader.onloadend=()=>{
+            setPreviewSource(reader.result)
         }
     }
 
@@ -139,9 +148,8 @@ const ProductEditScreen = ({match, history}) => {
                   label='choose File' 
                   custom 
                   onChange={uploadFileHandler}>
-                      
                   </Form.File>
-                  {uploading && <Loader/>}
+                  {uploading ? <Loader/> : previewSource ? (<img src={previewSource} alt='chosenimg' style={{height:'200px'}}/>):''}
                 </Form.Group>
                 <Form.Group controlId='brand'>
                 <Form.Label>Brand</Form.Label>
@@ -188,9 +196,6 @@ const ProductEditScreen = ({match, history}) => {
                   
                 </Form.Group>
                
-               
-               
-                    
                     <Button type='submit'
                     variant='primary'>
                     Update
@@ -198,8 +203,6 @@ const ProductEditScreen = ({match, history}) => {
                 
             </Form>
             )}
-            
-            
         </FormContainer>
         </>
     )
