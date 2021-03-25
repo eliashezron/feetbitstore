@@ -56,43 +56,72 @@ const ProductEditScreen = ({match, history}) => {
 
     }, [dispatch,history, productId, product, successUpdate  ])
 
-
-    const uploadFileHandler =(e)=>{
-        const file = e.target.files[0]
-        previewFile(file)
-        // setSelectedFile(file)
-        // setImage(e.target.value)
+        const uploadFileHandler=(e)=>{
+            const file = e.target.files[0]
+            previewFile(file)
+            setUploading(true)
+        const bodyFormData= new FormData()
+        bodyFormData.append('image', file)
+        
         const reader = new FileReader()
         reader.readAsDataURL(file)
         reader.onloadend=()=>{
             uploadImage(reader.result)
+            
         }
-        // const formData = new FormData()
-        // formData.append('image', file)
-        setUploading(true)
-}
-       const uploadImage=async(base64EncodedImage)=>{
-            console.log(base64EncodedImage)
-        try{
-            const config = {
-                headers:{
-                    'Content-Type':'application/json'
-                },
-                body:
-                    JSON.stringify({data:base64EncodedImage})
-                
-                }
-                const {data} = await axios.post(`https://backend12345678910.herokuapp.com/api/upload`, config)
-                // setImage()
-                setImage(data)
-                setPreviewSource('')
-                setUploading(false)
+    }
+        const uploadImage=async(base64EncodedImage)=>{
 
+        
+        try{
+            const config={headers:{
+                'Content-Type': 'multipart/form-data'
+            }, body:JSON.stringify({data:base64EncodedImage})}
+            const {data} = await axios.post('/api/upload', FormData, config)
+            console.log(data)
+            setImage(data)
+            setUploading(false)
         }catch(error){
             console.error(error)
             setUploading(false)
         }
     }
+//     const uploadFileHandler =(e)=>{
+//         const file = e.target.files[0]
+//         previewFile(file)
+//         // setSelectedFile(file)
+//         // setImage(e.target.value)
+//         const reader = new FileReader()
+//         reader.readAsDataURL(file)
+//         reader.onloadend=()=>{
+//             uploadImage(reader.result)
+//         }
+//         // const formData = new FormData()
+//         // formData.append('image', file)
+//         setUploading(true)
+// }
+//        const uploadImage=async(base64EncodedImage)=>{
+//             console.log(base64EncodedImage)
+//         try{
+//             const config = {
+//                 headers:{
+//                     'Content-Type':'application/json'
+//                 },
+//                 body:
+//                     JSON.stringify({data:base64EncodedImage})
+                
+//                 }
+//                 const {data} = await axios.post(`https://backend12345678910.herokuapp.com/api/upload`, config)
+//                 // setImage()
+//                 setImage(data)
+//                 setPreviewSource('')
+//                 setUploading(false)
+
+//         }catch(error){
+//             console.error(error)
+//             setUploading(false)
+//         }
+//     }
     const previewFile=(file)=>{
         const reader = new FileReader()
         reader.readAsDataURL(file);
