@@ -10,6 +10,7 @@ import userRoutes from './routes/userRoutes.js'
 import orderRoutes from './routes/orderRoutes.js'
 import uploadRoutes from './routes/uploadRoutes.js'
 import {notFound, errorHandler} from './middleware/errorMiddleware.js'
+// import request from 'request'
 // import cloud from '../utils/cloudinary.js'
 // import asyncHandler from 'express-async-handler'
 
@@ -25,6 +26,7 @@ app.use(cors())
 
 app.use(express.json())
 
+
 if(process.env.NODE_ENV === 'development'){
     app.use(morgan('dev'))
 }
@@ -39,10 +41,8 @@ app.use('/api/orders', orderRoutes)
 
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
-app.post('/api/upload', (req, res)=>{
-    const fileStr = req.body.data
-    console.log(fileStr)
-})
+app.post('/api/upload', uploadRoutes)
+
 // asyncHandler(req, res=>{
 //    try{
 //        const fileStr = req.body.data;
