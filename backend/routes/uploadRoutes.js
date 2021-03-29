@@ -1,12 +1,13 @@
 import path from 'path';
 import express from 'express';
 import dotenv from 'dotenv';
-import {cloudinary, uploader} from 'cloudinary';
+import apk from 'cloudinary';
 import { CloudinaryStorage } from 'multer-storage-cloudinary';
 import multer from 'multer';
 import Datauri from 'datauri';
 dotenv.config();
 
+const {cloudinary, uploader}= apk
 const cloud = cloudinary.v2;
 const router = express.Router();
 
@@ -23,7 +24,7 @@ allowedFormats: ["jpg", "png"],
 transformation: [{ width: 500, height: 500, crop: "limit" }],
 public_id: (req, file) => `${file.originalname.split('.')[0]}-${Date.now()}`
 });
-
+const dUri = new Datauri();
 const dataUri = req => dUri.format(path.extname(req.file.originalname).toString(), req.file.buffer)
 // const storage = new CloudinaryStorage({
 //   cloudinary: cloud,
