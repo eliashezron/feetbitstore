@@ -2,7 +2,7 @@ import path from 'path';
 import express from 'express';
 import dotenv from 'dotenv';
 import cloudinary from 'cloudinary';
-import cloudinaryStorage from 'multer-storage-cloudinary';
+import { CloudinaryStorage } from 'multer-storage-cloudinary';
 import multer from 'multer';
 
 dotenv.config();
@@ -16,7 +16,7 @@ api_key: process.env.CLOUDINARY_API_KEY,
 api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-const storage = cloudinaryStorage({
+const storage = new CloudinaryStorage({
 cloudinary: cloud,
 folder: "feetbitstores",
 allowedFormats: ["jpg", "png"],
