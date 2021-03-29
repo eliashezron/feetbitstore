@@ -10,7 +10,6 @@ import userRoutes from './routes/userRoutes.js'
 import orderRoutes from './routes/orderRoutes.js'
 import uploadRoutes from './routes/uploadRoutes.js'
 import {notFound, errorHandler} from './middleware/errorMiddleware.js'
-import { urlencoded, json } from 'body-parser';
 // import request from 'request'
 // import cloud from '../utils/cloudinary.js'
 // import asyncHandler from 'express-async-handler'
@@ -32,7 +31,7 @@ if(process.env.NODE_ENV === 'development'){
     app.use(morgan('dev'))
 }
 
-
+app.use(urlencoded({ extended: false }));
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
 // api requests
