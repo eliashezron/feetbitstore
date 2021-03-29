@@ -77,7 +77,7 @@ const ProductEditScreen = ({match, history}) => {
             const config={headers:{
                 'Content-Type': 'multipart/form-data'
             }, body:JSON.stringify({data:base64EncodedImage})}
-            const {data} = await axios.post('/api/upload', FormData, config)
+            const {data} = await axios.post('https://backend12345678910.herokuapp.com/api/upload', FormData, config)
             console.log(data)
             setImage(data)
             setUploading(false)
