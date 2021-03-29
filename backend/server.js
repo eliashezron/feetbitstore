@@ -26,12 +26,10 @@ app.use(cors())
 
 app.use(express.json())
 
-app.use(urlencoded({ extended: false }));
 if(process.env.NODE_ENV === 'development'){
     app.use(morgan('dev'))
 }
 
-app.use(urlencoded({ extended: false }));
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
 // api requests
