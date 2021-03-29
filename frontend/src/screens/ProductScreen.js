@@ -11,6 +11,7 @@ import {
     createProductReview
                     } from '../actions/productActions'
 import {PRODUCT_CREATE_REVIEW_RESET} from '../constants/productConstants'
+import StyledHero from '../components/StyledHero'
 
 
 const ProductScreen = ({history, match}) => {
@@ -64,10 +65,10 @@ const ProductScreen = ({history, match}) => {
                 <>
                 <Meta title={product.name}/>
                 <Row>
-                <Col xs={6} md={4}>
-                    <Image src={product.image} 
-                    alt={product.name} fluid/>
-                </Col>
+                <StyledHero>
+                    <img src={product.image} 
+                    alt={product.name}/>
+                </StyledHero>
                 <Col md={3}>
                     <ListGroup variant='flush'>
                         <ListGroup.Item>
