@@ -59,10 +59,9 @@ const ProductEditScreen = ({match, history}) => {
         const uploadFileHandler= async(e)=>{
             const file = e.target.files[0]
             previewFile(file)
+        const formData= new FormData()
+        formData.append('image', file)
             setUploading(true)
-        const bodyFormData= new FormData()
-        bodyFormData.append('image', file)
-        
         // const reader = new FileReader()
         // reader.readAsDataURL(file)
         // reader.onloadend=()=>{
@@ -72,20 +71,23 @@ const ProductEditScreen = ({match, history}) => {
     
         // const uploadImage=async(base64EncodedImage)=>{
 
-        
-        try{
-            const config={headers:{
-                'Content-Type': 'multipart/form-data'
-            }}
-            const {data} = await axios.post('https://backend12345678910.herokuapp.com/api/upload', FormData, config)
-            console.log(data)
-            setImage(data)
-            setUploading(false)
+         try{
+            const config = {
+                headers:{
+                    'Content-Type':'multipart/form-data'
+                }
+                }
+                const {data} = await axios.post('https://backend12345678910.herokuapp.com/api/upload', formData, config)
+
+                setImage(data)
+                setUploading(false)
+
         }catch(error){
             console.error(error)
             setUploading(false)
         }
     }
+    
 //     const uploadFileHandler =(e)=>{
 //         const file = e.target.files[0]
 //         previewFile(file)
@@ -236,7 +238,7 @@ const ProductEditScreen = ({match, history}) => {
                     </Form.Control>  
                   
                 </Form.Group>
-               
+                {}
                     <Button type='submit'
                     variant='primary'>
                     Update

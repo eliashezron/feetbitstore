@@ -38,6 +38,7 @@ const storage = new CloudinaryStorage({
   params: {
       folder: 'feetbitstores', // any desirable name
       public_id: (req, file) => `${file.originalname.split('.')[0]}-${Date.now()}`,
+      transformation: [{ width: 500, height: 500, crop: "limit" }],
   },
 });
 
@@ -63,17 +64,17 @@ checkFileType(file, cb);
 
 router.post('/', upload.single('image'), (req, res) => {
      
-  res.send(req.file.url);
-    //  console.log(req.file)
+
+     console.log(req.file)
         // const file = dataUri(req).content; 
         // return uploader.upload(file).then((result) => {
-            // const image = {};
-            // image.url = req.file.url;
-            // image.id = req.file.public_id;
+            const image = {};
+            image.url = req.file.url;
+            image.id = req.file.public_id;
             
-           // Image.create(image) // save image information in database
-                // .then(newImage => res.json(newImage))
-                // .catch(err => console.log(err));
+            Image.create(image) // save image information in database
+                .then(newImage => res.json(newImage))
+               .catch(err => console.log(err));
            
         
         // })
