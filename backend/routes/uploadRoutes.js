@@ -2,8 +2,7 @@ import express from 'express'
 const router = express.Router()
 
 import { uploader, cloudinaryConfig } from './config/cloudinaryConfig.js'
-import { multerUploads, dataUri } from './middlewares/multer.js';
-
+import { multerUploads, dataUri } from './middleware/multer.js';
 
 router.post('/', multerUploads, (req, res) => {
 if(req.file) {
