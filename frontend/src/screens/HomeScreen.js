@@ -103,20 +103,20 @@ const HomeScreen = ({match}) => {
                   </div>
                   
                   <div  >
-                      {/* sm={12} xs={6} md={4} lg={4} xl={3} */}
                       {products.map((product) => (
                     <div className={`list ${isGrid===false?'stack':''}`} key={product._id} >
                       <Product className='column-img' product={product} />
                     </div>
                     ))}
                   </div>
+                <div style={{display:'block'}} >
              <Paginate
               page={page}
                pages={pages} 
                keyword={keyword ? keyword: ''}
-               />
-               </>)
-          }
+               /></div>
+               </>
+          )}
         </>
     )
 }
