@@ -1,24 +1,24 @@
 import path from 'path';
 import express from 'express';
 import dotenv from 'dotenv';
-import apk from 'cloudinary';
+import { config, uploader } from 'cloudinary'
 import { CloudinaryStorage } from 'multer-storage-cloudinary';
 import multer from 'multer';
 import Datauri from 'datauri';
 dotenv.config();
 
-const {cloudinary, uploader}= apk
-const cloud = cloudinary.v2;
 const router = express.Router();
-
-cloud.config({
+const cloudinaryConfig = (req, res) => {
+config({
 cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
 api_key: process.env.CLOUDINARY_API_KEY,
 api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+}
+
 const storage = new CloudinaryStorage({
-cloudinary: cloud,
+cloudinary:cloudinaryConfig,
 folder: "feetbitstores",
 allowedFormats: ["jpg", "png"],
 transformation: [{ width: 500, height: 500, crop: "limit" }],
