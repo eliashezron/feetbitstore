@@ -16,13 +16,13 @@ api_key:'747215349399951',
 api_secret:'J1KlU8Wf-LYuen1yW0k4mlxlyf8',
 });
 
-const storage = new CloudinaryStorage({
-cloudinary:cloud,
-folder: "feetbitstores",
-allowedFormats: ["jpg", "png"],
-transformation: [{ width: 500, height: 500, crop: "limit" }],
-public_id: (req, file) => `${file.originalname.split('.')[0]}-${Date.now()}`
-});
+// const storage = new CloudinaryStorage({
+// cloudinary:cloud,
+// folder: "feetbitstores",
+// allowedFormats: ["jpg", "png"],
+// transformation: [{ width: 500, height: 500, crop: "limit" }],
+// public_id: (req, file) => `${file.originalname.split('.')[0]}-${Date.now()}`
+// });
 // Update for datauri module:
 // const DatauriParser = require("datauri/parser");
 // const parser = new DatauriParser();
@@ -32,14 +32,14 @@ public_id: (req, file) => `${file.originalname.split('.')[0]}-${Date.now()}`
 // req.file.buffer
 // ).content;
 // const dUri = new Datauri();
-const dataUri = req => dUri.format(path.extname(req.file.originalname).toString(), req.file.buffer)
-// const storage = new CloudinaryStorage({
-//   cloudinary: cloud,
-//   params: {
-//       folder: 'folder_name', // any desirable name
-//       public_id: (req, file) => `${file.originalname.split('.')[0]}-${Date.now()}`,
-//   },
-// });
+// const dataUri = req => dUri.format(path.extname(req.file.originalname).toString(), req.file.buffer)
+const storage = new CloudinaryStorage({
+  cloudinary: cloud,
+  params: {
+      folder: 'feetbitstores', // any desirable name
+      public_id: (req, file) => `${file.originalname.split('.')[0]}-${Date.now()}`,
+  },
+});
 
 function checkFileType(file, cb) {
 const filetypes = /jpg|jpeg|png/;
@@ -63,18 +63,18 @@ checkFileType(file, cb);
 
 router.post('/', upload.single('image'), (req, res) => {
      console.log(req.file)
-        const file = dataUri(req).content; 
-        return uploader.upload(file).then((result) => {
+        // const file = dataUri(req).content; 
+        // return uploader.upload(file).then((result) => {
             const image = {};
-            image.url = result.url;
-            image.id = result.public_id;
+            image.url = req.file.url;
+            image.id = req.file.public_id;
             
             Image.create(image) // save image information in database
                 .then(newImage => res.json(newImage))
                 .catch(err => console.log(err));
            
         
-        })
+        // })
 })
      
 
