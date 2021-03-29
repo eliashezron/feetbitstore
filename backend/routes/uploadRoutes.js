@@ -35,10 +35,11 @@ api_secret:'J1KlU8Wf-LYuen1yW0k4mlxlyf8',
 // const dataUri = req => dUri.format(path.extname(req.file.originalname).toString(), req.file.buffer)
 const storage = new CloudinaryStorage({
   cloudinary: cloud,
- folder: "feetbitstores",
-transformation: [{ width: 500, height: 500, crop: "limit" }],
-public_id: (req, file) => `${file.originalname.split('.')[0]}-${Date.now()}`
-
+  params: {
+      folder: 'feetbitstores', // any desirable name
+      public_id: (req, file) => `${file.originalname.split('.')[0]}-${Date.now()}`,
+      transformation: [{ width: 500, height: 500, crop: "limit" }],
+  },
 });
 
 function checkFileType(file, cb) {

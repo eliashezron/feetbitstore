@@ -13,6 +13,7 @@ import {listProducts} from '../actions/productActions'
 import './HomeScreen.css'
 import ReorderTwoToneIcon from '@material-ui/icons/ReorderTwoTone';
 import AppsTwoToneIcon from '@material-ui/icons/AppsTwoTone';
+import { Row } from 'react-bootstrap'
 
 const HomeScreen = ({match}) => {
     const keyword = match.params.keyword
@@ -101,7 +102,7 @@ const HomeScreen = ({match}) => {
                     <div className={`layout-stack `}><ReorderTwoToneIcon onClick={()=> setIsGrid(false)}/></div>
                     <div className={`layout-grid`}><AppsTwoToneIcon onClick={()=>setIsGrid(true)}/></div>
                   </div>
-                  
+                  <Row>
                   <div  >
                       {products.map((product) => (
                     <div className={`list ${isGrid===false?'stack':''}`} key={product._id} >
@@ -109,7 +110,8 @@ const HomeScreen = ({match}) => {
                     </div>
                     ))}
                   </div>
-                <div style={{display:'block'}} >
+                  </Row>
+                <div className='paginate'>
              <Paginate
               page={page}
                pages={pages} 
