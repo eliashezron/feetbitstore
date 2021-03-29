@@ -1,10 +1,10 @@
 import path from 'path';
 import express from 'express';
 import dotenv from 'dotenv';
-import cloudinary from 'cloudinary';
+import {cloudinary, uploader} from 'cloudinary';
 import { CloudinaryStorage } from 'multer-storage-cloudinary';
 import multer from 'multer';
-
+import Datauri from 'datauri';
 dotenv.config();
 
 const cloud = cloudinary.v2;
@@ -24,6 +24,7 @@ transformation: [{ width: 500, height: 500, crop: "limit" }],
 public_id: (req, file) => `${file.originalname.split('.')[0]}-${Date.now()}`
 });
 
+const dataUri = req => dUri.format(path.extname(req.file.originalname).toString(), req.file.buffer)
 // const storage = new CloudinaryStorage({
 //   cloudinary: cloud,
 //   params: {
@@ -54,13 +55,33 @@ checkFileType(file, cb);
 
 router.post('/', upload.single('image'), (req, res) => {
      console.log(req.file)
-const image = {};
-  image.url = req.file.url;
-  image.id = req.file.public_id;
-  Image.create(image) // save image information in database
-    .then(newImage => res.json(newImage))
-    .catch(err => console.log(err));
-});
+     if(req.file){
+        const file = dataUri(req).content; 
+        return uploader.upload(file).then((result) => {
+            const image = {};
+            image.url = result.url;
+            image.id = result.public_id;
+            
+            Image.create(image) // save image information in database
+                .then(newImage => res.json(newImage))
+                .catch(err => console.log(err));
+            return res.status(200).json({
+                message:'your image has been uploaded successfully tpo cloudinary',
+                data:{image}
+            }).catch((err)=>{
+                res.status(400).json({
+                messge: 'someting went wrong while processing your request',
+                data: {
+                err
+                }
+            })
+        
+        })
+})
+     }
+}) 
+    
+
 
 export default router;
 
