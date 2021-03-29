@@ -56,27 +56,27 @@ const ProductEditScreen = ({match, history}) => {
 
     }, [dispatch,history, productId, product, successUpdate  ])
 
-        const uploadFileHandler=(e)=>{
+        const uploadFileHandler= async(e)=>{
             const file = e.target.files[0]
             previewFile(file)
             setUploading(true)
         const bodyFormData= new FormData()
         bodyFormData.append('image', file)
         
-        const reader = new FileReader()
-        reader.readAsDataURL(file)
-        reader.onloadend=()=>{
-            uploadImage(reader.result)
+        // const reader = new FileReader()
+        // reader.readAsDataURL(file)
+        // reader.onloadend=()=>{
+        //     uploadImage(reader.result)
             
-        }
-    }
-        const uploadImage=async(base64EncodedImage)=>{
+        // }
+    
+        // const uploadImage=async(base64EncodedImage)=>{
 
         
         try{
             const config={headers:{
                 'Content-Type': 'multipart/form-data'
-            }, body:JSON.stringify({data:base64EncodedImage})}
+            }}
             const {data} = await axios.post('https://backend12345678910.herokuapp.com/api/upload', FormData, config)
             console.log(data)
             setImage(data)
