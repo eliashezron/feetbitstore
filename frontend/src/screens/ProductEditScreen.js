@@ -87,43 +87,7 @@ const ProductEditScreen = ({match, history}) => {
             setUploading(false)
         }
     }
-    
-//     const uploadFileHandler =(e)=>{
-//         const file = e.target.files[0]
-//         previewFile(file)
-//         // setSelectedFile(file)
-//         // setImage(e.target.value)
-//         const reader = new FileReader()
-//         reader.readAsDataURL(file)
-//         reader.onloadend=()=>{
-//             uploadImage(reader.result)
-//         }
-//         // const formData = new FormData()
-//         // formData.append('image', file)
-//         setUploading(true)
-// }
-//        const uploadImage=async(base64EncodedImage)=>{
-//             console.log(base64EncodedImage)
-//         try{
-//             const config = {
-//                 headers:{
-//                     'Content-Type':'application/json'
-//                 },
-//                 body:
-//                     JSON.stringify({data:base64EncodedImage})
-                
-//                 }
-//                 const {data} = await axios.post(`https://backend12345678910.herokuapp.com/api/upload`, config)
-//                 // setImage()
-//                 setImage(data)
-//                 setPreviewSource('')
-//                 setUploading(false)
-
-//         }catch(error){
-//             console.error(error)
-//             setUploading(false)
-//         }
-//     }
+ 
     const previewFile=(file)=>{
         const reader = new FileReader()
         reader.readAsDataURL(file);
@@ -239,11 +203,12 @@ const ProductEditScreen = ({match, history}) => {
                   
                 </Form.Group>
                 {}
+                {!uploading &&
                     <Button type='submit'
                     variant='primary'>
                     Update
                     </Button>
-                
+                }
             </Form>
             )}
         </FormContainer>
