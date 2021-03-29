@@ -1,30 +1,37 @@
 import path from 'path';
 import express from 'express';
 import dotenv from 'dotenv';
-import { config, uploader } from 'cloudinary'
+import cloudinary from 'cloudinary'
 import { CloudinaryStorage } from 'multer-storage-cloudinary';
 import multer from 'multer';
 import Datauri from 'datauri';
 dotenv.config();
 
+const cloud = cloudinary.v2
 const router = express.Router();
-const cloudinaryConfig = (req, res) => {
-config({
-cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-api_key: process.env.CLOUDINARY_API_KEY,
-api_secret: process.env.CLOUDINARY_API_SECRET,
+
+cloud.config({
+cloud_name:'eliashezron',
+api_key:'747215349399951',
+api_secret:'J1KlU8Wf-LYuen1yW0k4mlxlyf8',
 });
 
-}
-
 const storage = new CloudinaryStorage({
-cloudinary:cloudinaryConfig,
+cloudinary:cloud,
 folder: "feetbitstores",
 allowedFormats: ["jpg", "png"],
 transformation: [{ width: 500, height: 500, crop: "limit" }],
 public_id: (req, file) => `${file.originalname.split('.')[0]}-${Date.now()}`
 });
-const dUri = new Datauri();
+// Update for datauri module:
+// const DatauriParser = require("datauri/parser");
+// const parser = new DatauriParser();
+// for getting the string from the file buffer
+// const file = parser.format(
+// path.extname(req.file.originalname).toString(),
+// req.file.buffer
+// ).content;
+// const dUri = new Datauri();
 const dataUri = req => dUri.format(path.extname(req.file.originalname).toString(), req.file.buffer)
 // const storage = new CloudinaryStorage({
 //   cloudinary: cloud,
@@ -56,7 +63,6 @@ checkFileType(file, cb);
 
 router.post('/', upload.single('image'), (req, res) => {
      console.log(req.file)
-     if(req.file){
         const file = dataUri(req).content; 
         return uploader.upload(file).then((result) => {
             const image = {};
@@ -66,21 +72,12 @@ router.post('/', upload.single('image'), (req, res) => {
             Image.create(image) // save image information in database
                 .then(newImage => res.json(newImage))
                 .catch(err => console.log(err));
-            return res.status(200).json({
-                message:'your image has been uploaded successfully tpo cloudinary',
-                data:{image}
-            }).catch((err)=>{
-                res.status(400).json({
-                messge: 'someting went wrong while processing your request',
-                data: {
-                err
-                }
-            })
+           
         
         })
 })
-     }
-}) 
+     
+
     
 
 
